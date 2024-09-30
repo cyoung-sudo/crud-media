@@ -1,21 +1,17 @@
 import './App.css';
 // Routing
-import { RouterProvider } from "react-router-dom";
-import router from "./router";
-// Components
-import Navigationbar from "./components/navigation/Navigationbar";
-import Footer from "./components/navigation/Footer";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./Root";
+// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Create data router singleton
+const router = createBrowserRouter([
+  { path: "*", element: <Root /> },
+]);
 
 function App() {
-  return (
-    <div id="app">
-      <Navigationbar/>
-      <div id="app-content">
-        <RouterProvider router={router} />
-      </div>
-      <Footer/>
-    </div>
-  )
+  return <RouterProvider router={router} />;
 }
 
 export default App
