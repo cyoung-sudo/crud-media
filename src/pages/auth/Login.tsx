@@ -15,7 +15,7 @@ const Login = () => {
   // Hooks
   const navigate = useNavigate();
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     AuthAPI.login(username, password)
       .then(res => {
