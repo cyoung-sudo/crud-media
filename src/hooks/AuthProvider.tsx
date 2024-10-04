@@ -1,4 +1,5 @@
-import { useContext, createContext, useState, ReactNode } from "react";
+// React
+import { useEffect, useContext, createContext, useState, ReactNode } from "react";
 // Routing
 import { useNavigate } from "react-router-dom";
 // APIs
@@ -25,6 +26,18 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
   // Hooks
   const navigate = useNavigate();
+
+  useEffect(() => {
+    AuthAPI.getAuthUser()
+      .then(res => {
+        if(res.data.success) {
+          setAuthUser(res.data.user);
+        } else {
+          console.log(res.data.message);
+        }
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   const login = async (username: string, password: string) => {
     try {
