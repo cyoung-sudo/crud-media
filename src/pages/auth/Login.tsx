@@ -1,34 +1,21 @@
 import "./Login.css";
 // React
 import { useState } from "react";
-// Routing
-import { useNavigate } from "react-router-dom";
 // Components
 import LoginForm from "../../components/forms/LoginForm";
-// APIs
-import AuthAPI from "../../apis/AuthAPI.ts";
+// Hooks
+import { useAuth } from "../../hooks/AuthProvider";
 
 const Login = () => {
   // Controlled input
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   // Hooks
-  const navigate = useNavigate();
+  const auth = useAuth();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    AuthAPI.login(username, password)
-      .then(res => {
-        if(res.data.success) {
-          console.log(res.data.user);
-          navigate("/");
-        } else {
-          console.log(res.data.message);
-          setUsername("");
-          setPassword("");
-        }
-      })
-      .catch(err => console.log(err));
+    auth.login(username, password);
   }
 
   return (
