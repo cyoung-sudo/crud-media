@@ -1,0 +1,11 @@
+#allPosts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+#allPosts > h1 {
+  margin-bottom: 2rem;
+}
