@@ -15,7 +15,7 @@ interface Props {
   users: User[];
 };
 
-const UsersLists: React.FC<Props> = ({ users }) => {
+const UsersList: React.FC<Props> = ({ users }) => {
   // Hooks
   const navigate = useNavigate();
 
@@ -31,4 +31,4 @@ const UsersLists: React.FC<Props> = ({ users }) => {
   );
 };
 
-export default UsersLists;
+export default UsersList;

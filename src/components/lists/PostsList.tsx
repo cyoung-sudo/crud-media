@@ -14,7 +14,7 @@ interface Props {
   posts: Post[];
 };
 
-const PostsLists: React.FC<Props> = ({ posts }) => {
+const PostsList: React.FC<Props> = ({ posts }) => {
   return (
     <ListGroup>
       {posts.map((post: Post, idx: number) => (
@@ -29,4 +29,4 @@ const PostsLists: React.FC<Props> = ({ posts }) => {
   );
 };
 
-export default PostsLists;
+export default PostsList;

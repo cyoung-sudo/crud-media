@@ -25,6 +25,17 @@ const PostAPI = {
     });
 
     return res;
+  },
+
+  //----- Retrieve post for given user
+  getForUser: async (userId: string) => {
+    const res = await api.request({
+      method: "GET",
+      url: `/api/posts/user/${userId}`,
+      baseURL
+    });
+
+    return res;
   }
 };
 
