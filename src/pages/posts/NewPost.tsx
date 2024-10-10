@@ -22,6 +22,8 @@ const NewPost = () => {
         if(res.data.success) {
           console.log("post created");
           navigate("/posts");
+        } else {
+          console.log(res.data.message);
         }
       })
       .catch(err => console.log(err));

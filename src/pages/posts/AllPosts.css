@@ -9,3 +9,7 @@
 #allPosts > h1 {
   margin-bottom: 2rem;
 }
+
+#allPosts > button {
+  margin-bottom: 2rem;
+}
