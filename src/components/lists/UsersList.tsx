@@ -1,8 +1,11 @@
 import "./UsersList";
+// Routing
+import { useNavigate } from "react-router-dom";
 // Bootstrap
 import ListGroup from 'react-bootstrap/ListGroup';
 
 interface User {
+  _id: string,
   username: string;
   password: string;
   createdAt: Date;
@@ -13,11 +16,14 @@ interface Props {
 };
 
 const UsersLists: React.FC<Props> = ({ users }) => {
+  // Hooks
+  const navigate = useNavigate();
+
   return (
     <ListGroup>
       {users.map((user: User, idx: number) => (
         <ListGroup.Item key={idx}>
-          <div>{user.username}</div>
+          <div><button onClick={() => navigate(`/users/${user._id}`)}>{user.username}</button></div>
           <div>{new Date(user.createdAt).toDateString()}</div>
         </ListGroup.Item>
       ))}

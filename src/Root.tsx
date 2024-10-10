@@ -33,7 +33,7 @@ const Root = () => {
             <Route path="users">
               <Route index element={<AllUsers/>}/>
               <Route path="edit" element={<EditUser/>}/>
-              <Route path="profile" element={<UserProfile/>}/>
+              <Route path=":userId" element={<UserProfile/>}/>
             </Route>
           </Route>
         </Route>
