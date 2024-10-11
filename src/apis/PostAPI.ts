@@ -27,6 +27,17 @@ const PostAPI = {
     return res;
   },
 
+  //----- Delete given post
+  deletePost: async (postId: string) => {
+    const res = await api.request({
+      method: "DELETE",
+      url: `/api/posts/${postId}`,
+      baseURL
+    });
+
+    return res;
+  },
+
   //----- Retrieve post for given user
   getForUser: async (userId: string) => {
     const res = await api.request({
