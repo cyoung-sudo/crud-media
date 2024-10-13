@@ -14,10 +14,11 @@ interface Post {
 interface Props {
   posts: Post[];
   userId?: string;
+  editPost?: (id: string) => void;
   deletePost?: (id: string) => void;
 };
 
-const PostsList: React.FC<Props> = ({ posts, userId=null, deletePost=null }) => {
+const PostsList: React.FC<Props> = ({ posts, userId=null, editPost=null, deletePost=null }) => {
   return (
     <ListGroup>
       {posts.map((post: Post, idx: number) => (
@@ -26,9 +27,10 @@ const PostsList: React.FC<Props> = ({ posts, userId=null, deletePost=null }) => 
           <div>{post.title}</div>
           <div>{post.text}</div>
           <div>{new Date(post.createdAt).toDateString()}</div>
-          {(post.userId === userId) && deletePost && 
+          {(post.userId === userId) && deletePost && editPost && <>
+            <button onClick={() => editPost(post._id)}>Edit</button>
             <button onClick={() => deletePost(post._id)}>Delete</button>
-          }
+          </>}
         </ListGroup.Item>
       ))}
     </ListGroup>

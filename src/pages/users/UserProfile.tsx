@@ -2,7 +2,7 @@ import "./UserProfile.css";
 // React
 import { useState, useEffect } from "react";
 // Routing
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // Components
 import PostsList from "../../components/lists/PostsList";
 // APIs
@@ -11,33 +11,46 @@ import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
 
+interface User {
+  _id: string;
+  username: string;
+};
+
 const UserProfile = () => {
   // Retrieved data
-  const [profileUser, setPorfileUser] = useState(null);
+  const [profileUser, setPorfileUser] = useState<User | null>(null);
   const [profilePosts, setPorfilePosts] = useState(null);
   // Refresh
   const [refresh, setRefresh] = useState(true);
   // Hooks
   const {userId} = useParams();
+  const navigate = useNavigate();
   const auth = useAuth();
+  const authUser = auth.authUser;
 
   useEffect(() => {
-    // Retrieve user
-    UserAPI.getUser(userId)
-    .then(res => {
-      if(res.data.success) {
-        setPorfileUser(res.data.user);
-      }
-      // Retrueve user's posts
-      return PostAPI.getForUser(userId);
-    })
-    .then(res => {
-      if(res.data.success) {
-        setPorfilePosts(res.data.posts);
-      }
-    })
-    .catch(err => console.log(err));
+    if(userId) {
+      // Retrieve user
+      UserAPI.getUser(userId)
+      .then(res => {
+        if(res.data.success) {
+          setPorfileUser(res.data.user);
+        }
+        // Retrieve user's posts
+        return PostAPI.getForUser(userId);
+      })
+      .then(res => {
+        if(res.data.success) {
+          setPorfilePosts(res.data.posts);
+        }
+      })
+      .catch(err => console.log(err));
+    }
   }, [userId, refresh]);
+
+  let handleEditPost = (postId: string) => {
+    navigate(`/posts/edit/${postId}`);
+  };
 
   let handleDeletePost = (postId: string) => {
     PostAPI.deletePost(postId)
@@ -57,7 +70,8 @@ const UserProfile = () => {
         <div>
           <PostsList 
             posts={profilePosts} 
-            userId={auth.authUser && auth.authUser._id}
+            userId={authUser ? authUser._id : undefined}
+            editPost={handleEditPost}
             deletePost={handleDeletePost}/>
         </div>
       </div>}

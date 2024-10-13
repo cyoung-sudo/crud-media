@@ -27,6 +27,32 @@ const PostAPI = {
     return res;
   },
 
+  //----- Retrieve given post
+  getPost: async (postId: string) => {
+    const res = await api.request({
+      method: "GET",
+      url: `/api/posts/${postId}`,
+      baseURL
+    });
+
+    return res;
+  },
+
+  //----- Update given post
+  editPost: async (postId: string, title: string, text: string) => {
+    const res = await api.request({
+      method: "PUT",
+      data: {
+        title,
+        text
+      },
+      url: `/api/posts/${postId}`,
+      baseURL
+    });
+
+    return res;
+  },
+
   //----- Delete given post
   deletePost: async (postId: string) => {
     const res = await api.request({

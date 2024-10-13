@@ -33,7 +33,7 @@ const PostForm: React.FC<Props> = ({ title, text, setTitle, setText, handleSubmi
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        Create
+        Submit
       </Button>
     </Form>
   );

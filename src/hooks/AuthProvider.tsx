@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import AuthAPI from "../apis/AuthAPI.ts";
 
 interface User {
+  _id: string,
   username: string,
   password: string
 };

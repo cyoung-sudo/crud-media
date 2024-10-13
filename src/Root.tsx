@@ -27,8 +27,10 @@ const Root = () => {
             </Route>
             <Route path="posts">
               <Route index element={<AllPosts/>}/>
-              <Route path="edit" element={<EditPost/>}/>
               <Route path="new" element={<NewPost/>}/>
+              <Route path="edit">
+                <Route path=":postId" element={<EditPost/>}/>
+              </Route>
             </Route>
             <Route path="users">
               <Route index element={<AllUsers/>}/>
