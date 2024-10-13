@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import PostForm from "../../components/forms/PostForm";
 // APIs
 import PostAPI from "../../apis/PostAPI";
+// Hooks
+import { useAuth } from "../../hooks/AuthProvider";
 
 const NewPost = () => {
   // Controlled inputs
@@ -14,20 +16,24 @@ const NewPost = () => {
   const [text, setText] = useState("");
   // Hooks
   const navigate = useNavigate();
+  const auth = useAuth();
+  const authUser = auth.authUser;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    PostAPI.create(title, text)
+    if(authUser) {
+      PostAPI.create(title, text)
       .then(res => {
         if(res.data.success) {
-          console.log("post created");
-          navigate("/posts");
+          console.log("Post created");
+          navigate(`/users/${authUser._id}`);
         } else {
           console.log(res.data.message);
         }
       })
       .catch(err => console.log(err));
-  }
+    }
+  };
 
   return (
     <div id="newPost">
