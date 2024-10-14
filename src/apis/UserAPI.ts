@@ -36,6 +36,17 @@ const UserAPI = {
     });
 
     return res;
+  },
+
+  //----- Delete user
+  deleteUser: async (userId: string) => {
+    const res = await api.request({
+      method: "DELETE",
+      url: `/api/users/${userId}`,
+      baseURL
+    });
+
+    return res;
   }
 };
 

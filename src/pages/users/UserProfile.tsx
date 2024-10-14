@@ -62,10 +62,29 @@ const UserProfile = () => {
     .catch(err => console.log(err));
   };
 
+  let handleDeleteUser = () => {
+    if(authUser) {
+      // Logout
+      auth.logout();
+      // Delete user
+      UserAPI.deleteUser(authUser._id)
+      .then(res => {
+        if(res.data.success) {
+          console.log("Deleted Account")
+        }
+      })
+      .catch(err => console.log(err));
+    }
+  }
+
   return (
     <>
       {profileUser && profilePosts && <div id="userProfile">
         <h1>{profileUser.username}'s profile</h1>
+
+        {auth.authUser && (profileUser._id === auth.authUser._id) && 
+          <button onClick={handleDeleteUser}>Delete Account</button>
+        }
 
         <div>
           <PostsList 

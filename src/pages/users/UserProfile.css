@@ -9,3 +9,7 @@
 #userProfile > h1 {
   margin-bottom: 2rem;
 }
+
+#userProfile > button {
+  margin-bottom: 2rem;
+}
