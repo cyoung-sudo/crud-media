@@ -2,6 +2,7 @@ import "./PostsList.css";
 import { useNavigate } from "react-router-dom";
 // Bootstrap
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 
 interface Post {
   _id: string,
@@ -33,10 +34,12 @@ const PostsList: React.FC<Props> = ({ posts, userId=null, editPost=null, deleteP
             By: <button onClick={() => navigate(`/users/${post.userId}`)}>{post.username}</button>
           </div>
           <div className="postsList-post-date">Posted: {new Date(post.createdAt).toDateString()}</div>
-          {(post.userId === userId) && deletePost && editPost && <>
-            <button onClick={() => editPost(post._id)}>Edit</button>
-            <button onClick={() => deletePost(post._id)}>Delete</button>
-          </>}
+          {(post.userId === userId) && deletePost && editPost && 
+            <div className="postsList-post-actions">
+              <Button variant="warning" onClick={() => editPost(post._id)}>Edit</Button>
+              <Button variant="danger" onClick={() => deletePost(post._id)}>Delete</Button>
+            </div>
+          }
         </ListGroup.Item>
       ))}
     </ListGroup>

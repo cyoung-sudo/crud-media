@@ -10,6 +10,8 @@ import UserAPI from "../../apis/UserAPI";
 import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
+// Bootstrap
+import Button from 'react-bootstrap/Button';
 
 interface User {
   _id: string;
@@ -83,10 +85,10 @@ const UserProfile = () => {
         <h1>{profileUser.username}'s profile</h1>
 
         {auth.authUser && (profileUser._id === auth.authUser._id) && 
-          <button onClick={handleDeleteUser}>Delete Account</button>
+          <Button variant="danger" onClick={handleDeleteUser}>Delete Account</Button>
         }
 
-        <div>
+        <div id="userProfile-list">
           <PostsList 
             posts={profilePosts} 
             userId={authUser ? authUser._id : undefined}

@@ -13,3 +13,21 @@
 #userProfile > button {
   margin-bottom: 2rem;
 }
+
+#userProfile-list {
+  width: 95vw;
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 768px) {
+  #userProfile-list {
+    width: 75vw;
+  }
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1280px) {
+  #userProfile-list {
+    width: 55vw;
+  }
+}
