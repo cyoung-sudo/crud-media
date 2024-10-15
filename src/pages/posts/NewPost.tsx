@@ -26,7 +26,7 @@ const NewPost = () => {
       .then(res => {
         if(res.data.success) {
           console.log("Post created");
-          navigate(`/users/${authUser._id}`);
+          navigate("/posts");
         } else {
           console.log(res.data.message);
         }
