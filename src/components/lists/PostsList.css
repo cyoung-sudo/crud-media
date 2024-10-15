@@ -1,0 +1,32 @@
+.postsList-post {
+  padding: 1rem;
+}
+
+.postsList-post > div {
+  word-wrap: break-word;
+}
+
+.postsList-post-title {
+  font-size: 1.5rem;
+}
+
+.postsList-post-text {
+  font-size: 1.1rem;
+}
+
+.postsList-post-username > button {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.postsList-post-username > button:hover {
+  font-weight: bold;
+}
+
+.postsList-post-date {
+  font-size: 0.9rem;
+  font-style: italic;
+}

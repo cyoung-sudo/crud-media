@@ -1,11 +1,12 @@
-#usersList {
-  text-align: center;
+.usersList-user {
+  padding: 1rem;
 }
 
 .usersList-user-username > button {
+  padding: 0;
   border: none;
   background: none;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .usersList-user-username > button:hover {

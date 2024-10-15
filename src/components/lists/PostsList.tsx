@@ -1,4 +1,5 @@
-import "./UsersList";
+import "./PostsList.css";
+import { useNavigate } from "react-router-dom";
 // Bootstrap
 import ListGroup from 'react-bootstrap/ListGroup';
 
@@ -19,14 +20,19 @@ interface Props {
 };
 
 const PostsList: React.FC<Props> = ({ posts, userId=null, editPost=null, deletePost=null }) => {
+  // Hooks
+  const navigate = useNavigate();
+
   return (
-    <ListGroup>
+    <ListGroup id="postsList">
       {posts.map((post: Post, idx: number) => (
-        <ListGroup.Item key={idx}>
-          <div>{post.username}</div>
-          <div>{post.title}</div>
-          <div>{post.text}</div>
-          <div>{new Date(post.createdAt).toDateString()}</div>
+        <ListGroup.Item className="postsList-post" key={idx}>
+          <div className="postsList-post-title">{post.title}</div>
+          <div className="postsList-post-text">{post.text}</div>
+          <div className="postsList-post-username">
+            By: <button onClick={() => navigate(`/users/${post.userId}`)}>{post.username}</button>
+          </div>
+          <div className="postsList-post-date">Posted: {new Date(post.createdAt).toDateString()}</div>
           {(post.userId === userId) && deletePost && editPost && <>
             <button onClick={() => editPost(post._id)}>Edit</button>
             <button onClick={() => deletePost(post._id)}>Delete</button>

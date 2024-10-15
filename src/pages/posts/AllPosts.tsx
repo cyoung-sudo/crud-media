@@ -9,6 +9,8 @@ import PostsLists from "../../components/lists/PostsList";
 import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
+// Bootstrap
+import Button from 'react-bootstrap/Button';
 
 const AllPosts = () => {
   // Retrieved data
@@ -31,8 +33,8 @@ const AllPosts = () => {
     return (
       <div id="allPosts">
         <h1>Posts</h1>
-        {auth.authUser && <button onClick={() => navigate("/posts/new")}>Creat Post</button>}
-        <div>
+        {auth.authUser && <Button variant="primary" onClick={() => navigate("/posts/new")}>Create Post</Button>}
+        <div id="allPosts-list">
           <PostsLists posts={posts}/>
         </div>
       </div>
