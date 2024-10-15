@@ -1,0 +1,18 @@
+#usersList {
+  text-align: center;
+}
+
+.usersList-user-username > button {
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+}
+
+.usersList-user-username > button:hover {
+  font-weight: bold;
+}
+
+.usersList-user-date {
+  font-size: 0.9rem;
+  font-style: italic;
+}

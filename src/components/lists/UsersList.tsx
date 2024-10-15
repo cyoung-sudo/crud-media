@@ -1,4 +1,4 @@
-import "./UsersList";
+import "./UsersList.css";
 // Routing
 import { useNavigate } from "react-router-dom";
 // Bootstrap
@@ -20,11 +20,13 @@ const UsersList: React.FC<Props> = ({ users }) => {
   const navigate = useNavigate();
 
   return (
-    <ListGroup>
+    <ListGroup id="usersList">
       {users.map((user: User, idx: number) => (
-        <ListGroup.Item key={idx}>
-          <div><button onClick={() => navigate(`/users/${user._id}`)}>{user.username}</button></div>
-          <div>{new Date(user.createdAt).toDateString()}</div>
+        <ListGroup.Item className="usersList-user" key={idx}>
+          <div className="usersList-user-username">
+            <button onClick={() => navigate(`/users/${user._id}`)}>{user.username}</button>
+          </div>
+          <div className="usersList-user-date">Joined: {new Date(user.createdAt).toDateString()}</div>
         </ListGroup.Item>
       ))}
     </ListGroup>

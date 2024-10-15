@@ -24,7 +24,7 @@ const AllUsers = () => {
     return (
       <div id="allUsers">
         <h1>Users</h1>
-        <div>
+        <div id="allUsers-list">
           <UsersList users={users}/>
         </div>
       </div>
