@@ -9,14 +9,16 @@ import AllPosts from "./pages/posts/AllPosts";
 import EditPost from "./pages/posts/EditPost";
 import NewPost from "./pages/posts/NewPost";
 import AllUsers from "./pages/users/AllUsers";
-import EditUser from "./pages/users/EditUser";
 import UserProfile from "./pages/users/UserProfile";
+// Components
+import ScrollToTop from "./components/utils/ScrollToTop";
 // Context
 import AuthProvider from "./hooks/AuthProvider";
 
 const Root = () => {
   return (
     <AuthProvider>
+      <ScrollToTop/>
       <Routes>
         <Route element={<Layout/>}>
           <Route path="/">
@@ -34,7 +36,6 @@ const Root = () => {
             </Route>
             <Route path="users">
               <Route index element={<AllUsers/>}/>
-              <Route path="edit" element={<EditUser/>}/>
               <Route path=":userId" element={<UserProfile/>}/>
             </Route>
           </Route>
