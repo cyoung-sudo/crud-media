@@ -1,6 +1,7 @@
 :root {
   /* Colors */
   --theme-color-1: steelblue;
+  --theme-color-2: lightcyan;
   /* Measurements */
   --navbar-height: 55px;
   --footer-height: 110px;

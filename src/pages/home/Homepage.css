@@ -1,0 +1,21 @@
+#homepage > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - var(--navbar-height));
+  padding: 1rem;
+  text-align: center;
+}
+
+#homepage > div > h1 {
+  padding-right: 1rem;
+}
+
+#homepage > div > p {
+  font-size: 1.3rem;
+}
+
+#homepage > div:nth-child(odd) {
+  background: var(--theme-color-2);
+}
