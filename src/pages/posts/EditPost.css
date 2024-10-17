@@ -9,3 +9,21 @@
 #editPost > h1 {
   margin-bottom: 2rem;
 }
+
+#editPost-form {
+  width: 95vw;
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 768px) {
+  #editPost-form {
+    width: 75vw;
+  }
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1280px) {
+  #editPost-form {
+    width: 55vw;
+  }
+}

@@ -38,7 +38,7 @@ const NewPost = () => {
   return (
     <div id="newPost">
       <h1>New Post</h1>
-      <div>
+      <div id="newPost-form">
         <PostForm
           title={title}
           text={text}

@@ -51,7 +51,7 @@ const EditPost = () => {
   return (
     <div id="editPost">
       <h1>Edit Post</h1>
-      <div>
+      <div id="editPost-form">
         <PostForm
           title={title}
           text={text}
