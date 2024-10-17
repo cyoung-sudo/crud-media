@@ -30,7 +30,7 @@ const AllPosts = () => {
   // Hooks
   const auth = useAuth();
   const navigate = useNavigate();
-  const { currentPage, totalPages, currentData, nextPage, prevPage } = usePagination(posts, 2);
+  const { currentPage, totalPages, currentData, nextPage, prevPage } = usePagination(posts, 10);
 
   useEffect(() => {
     let pagePosts = currentData();

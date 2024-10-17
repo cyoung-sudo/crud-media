@@ -25,7 +25,7 @@ const AllUsers = () => {
   // Page data
   const [pageData, setPageData] = useState<User[] | null>(null);
   // Hooks
-  const { currentPage, totalPages, currentData, nextPage, prevPage } = usePagination(users, 2);
+  const { currentPage, totalPages, currentData, nextPage, prevPage } = usePagination(users, 10);
 
   useEffect(() => {
     let pageUsers = currentData();

@@ -16,6 +16,11 @@
 
 #userProfile-list {
   width: 95vw;
+  margin-bottom: 2rem;
+}
+
+#userProfile-pagination > span {
+  padding: 0 1rem;
 }
 
 /* Medium devices such as tablets (768px and up) */

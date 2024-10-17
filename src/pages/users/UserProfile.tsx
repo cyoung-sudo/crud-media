@@ -1,6 +1,8 @@
 import "./UserProfile.css";
+// React
+import { useState, useEffect } from "react";
 // Routing
-import { useNavigate, useLoaderData } from "react-router-dom";
+import { useNavigate, useLoaderData, useLocation } from "react-router-dom";
 // Components
 import PostsList from "../../components/lists/PostsList";
 // APIs
@@ -8,8 +10,11 @@ import UserAPI from "../../apis/UserAPI";
 import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
+import usePagination from "../../hooks/usePagination";
 // Bootstrap
 import Button from 'react-bootstrap/Button';
+// Icons
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 interface User {
   _id: string;
@@ -33,11 +38,19 @@ interface LoaderData {
 const UserProfile = () => {
   // Loader data
   const { profileUser, profilePosts } = useLoaderData() as LoaderData;
+  // Page data
+  const [pageData, setPageData] = useState<Post[] | null>(null);
   // Hooks
   const navigate = useNavigate();
   const auth = useAuth();
   const authUser = auth.authUser;
-  
+  const { currentPage, totalPages, currentData, nextPage, prevPage } = usePagination(profilePosts, 10);
+  const location = useLocation();
+
+  useEffect(() => {
+    let pagePosts = currentData();
+    setPageData(pagePosts);
+  }, [currentPage, location])
 
   let handleEditPost = (postId: string) => {
     navigate(`/posts/edit/${postId}`);
@@ -47,7 +60,6 @@ const UserProfile = () => {
     PostAPI.deletePost(postId)
     .then(res => {
       if(res.data.success) {
-        // fetcher.reload();
         navigate(".", { replace: true });
       }
     })
@@ -77,12 +89,20 @@ const UserProfile = () => {
         <Button variant="danger" onClick={handleDeleteUser}>Delete Account</Button>
       }
 
-      <div id="userProfile-list">
-        <PostsList 
-          posts={profilePosts} 
-          userId={authUser ? authUser._id : undefined}
-          editPost={handleEditPost}
-          deletePost={handleDeletePost}/>
+      {pageData && 
+        <div id="userProfile-list">
+          <PostsList 
+            posts={pageData} 
+            userId={authUser ? authUser._id : undefined}
+            editPost={handleEditPost}
+            deletePost={handleDeletePost}/>
+        </div>
+      }
+
+      <div id="userProfile-pagination">
+        <Button onClick={prevPage} variant="primary"><FaArrowLeftLong/></Button>
+        <span>{currentPage}/{totalPages}</span>
+        <Button onClick={nextPage} variant="primary"><FaArrowRightLong/></Button>
       </div>
     </div>
   );

@@ -33,7 +33,6 @@ const usePagination = (data: User[] | Post[], itemsPerPage: number) => {
   };
 
   const nextPage = () => {
-    console.log("test")
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
