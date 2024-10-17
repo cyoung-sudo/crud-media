@@ -4,5 +4,13 @@
   align-items: center;
   height: var(--footer-height);
   background-color: var(--theme-color-1);
+}
+
+#footer > a {
   color: white;
+  text-decoration: none;
+}
+
+#footer > a:hover {
+  text-decoration: underline;
 }
