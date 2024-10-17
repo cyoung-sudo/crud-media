@@ -16,8 +16,12 @@
 
 #allPosts-list {
   width: 95vw;
+  margin-bottom: 2rem;
 }
 
+#allPosts-pagination > span {
+  padding: 0 1rem;
+}
 
 /* Medium devices such as tablets (768px and up) */
 @media only screen and (min-width: 768px) {

@@ -7,7 +7,16 @@ interface User {
   createdAt: Date;
 };
 
-const usePagination = (data: User[], itemsPerPage: number) => {
+interface Post {
+  _id: string,
+  userId: string,
+  username: string,
+  title: string,
+  text: string,
+  createdAt: Date
+};
+
+const usePagination = (data: User[] | Post[], itemsPerPage: number) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
