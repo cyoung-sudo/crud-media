@@ -2,7 +2,6 @@ import './App.css';
 // Routing
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Pages
-import Layout from "./pages/layout/Layout";
 import Homepage from "./pages/home/Homepage";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
@@ -11,6 +10,9 @@ import UserProfile from "./pages/users/UserProfile";
 import AllPosts from "./pages/posts/AllPosts";
 import EditPost from "./pages/posts/EditPost";
 import NewPost from "./pages/posts/NewPost";
+// Components
+import Layout from "./components/wrappers/Layout";
+import PrivateRoute from './components/wrappers/PrivateRoute';
 // APIs
 import UserAPI from "./apis/UserAPI";
 import PostAPI from "./apis/PostAPI";
@@ -71,19 +73,23 @@ const router = createBrowserRouter([
               return res.data.posts;
             }
           },
-          { path: "new", element: <NewPost/> },
-          { path: "edit",
-            children: [
-              { 
-                path: ":postId",
-                element: <EditPost/>,
-                loader: async ({ params }) => {
-                  const res = await PostAPI.getPost(params.postId);
-                  return res.data.post;
+          { element: <PrivateRoute/>, children: [
+            { path: "new", element: <NewPost/> }
+          ]},
+          { element: <PrivateRoute/>, children: [
+            { path: "edit",
+              children: [
+                { 
+                  path: ":postId",
+                  element: <EditPost/>,
+                  loader: async ({ params }) => {
+                    const res = await PostAPI.getPost(params.postId);
+                    return res.data.post;
+                  }
                 }
-              }
-            ]
-          }
+              ]
+            }
+          ]}
         ]
       }
     ]}
