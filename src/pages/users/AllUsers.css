@@ -12,6 +12,11 @@
 
 #allUsers-list {
   width: 95vw;
+  margin-bottom: 2rem;
+}
+
+#allUsers-pagination > span {
+  padding: 0 1rem;
 }
 
 /* Medium devices such as tablets (768px and up) */
