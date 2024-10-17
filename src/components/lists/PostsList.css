@@ -14,12 +14,15 @@
   font-size: 1.1rem;
 }
 
+.postsList-post-username {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .postsList-post-username > button {
   padding: 0;
   border: none;
   background: none;
-  font-size: 0.9rem;
-  font-style: italic;
 }
 
 .postsList-post-username > button:hover {
