@@ -1,35 +1,28 @@
 import "./AllUsers.css";
-// React
-import { useState, useEffect } from "react";
+// Routing
+import { useLoaderData } from "react-router-dom";
 // Components
 import UsersList from "../../components/lists/UsersList";
-// APIs
-import UserAPI from "../../apis/UserAPI";
+
+interface User {
+  _id: string;
+  username: string;
+  password: string;
+  createdAt: Date;
+}
 
 const AllUsers = () => {
-  // Retrieved data
-  const [users, setUsers] = useState(null);
+  // Loader data
+  const users = useLoaderData() as User[];
 
-  useEffect(() => {
-    UserAPI.getAll()
-    .then(res => {
-      if(res.data.success) {
-        setUsers(res.data.users);
-      }
-    })
-    .catch(err => console.log(err));
-  }, [])
-
-  if(users) {
-    return (
-      <div id="allUsers">
-        <h1>Users</h1>
-        <div id="allUsers-list">
-          <UsersList users={users}/>
-        </div>
+  return (
+    <div id="allUsers">
+      <h1>Users</h1>
+      <div id="allUsers-list">
+        <UsersList users={users}/>
       </div>
-    )
-  }
+    </div>
+  );
 };
 
 export default AllUsers;

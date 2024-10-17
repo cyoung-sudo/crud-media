@@ -1,8 +1,6 @@
 import "./UserProfile.css";
-// React
-import { useState, useEffect } from "react";
 // Routing
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 // Components
 import PostsList from "../../components/lists/PostsList";
 // APIs
@@ -18,37 +16,28 @@ interface User {
   username: string;
 };
 
+interface Post {
+  _id: string,
+  userId: string,
+  username: string,
+  title: string,
+  text: string,
+  createdAt: Date
+};
+
+interface LoaderData {
+  profileUser: User;
+  profilePosts: Post[];
+}
+
 const UserProfile = () => {
-  // Retrieved data
-  const [profileUser, setPorfileUser] = useState<User | null>(null);
-  const [profilePosts, setPorfilePosts] = useState(null);
-  // Refresh
-  const [refresh, setRefresh] = useState(true);
+  // Loader data
+  const { profileUser, profilePosts } = useLoaderData() as LoaderData;
   // Hooks
-  const {userId} = useParams();
   const navigate = useNavigate();
   const auth = useAuth();
   const authUser = auth.authUser;
-
-  useEffect(() => {
-    if(userId) {
-      // Retrieve user
-      UserAPI.getUser(userId)
-      .then(res => {
-        if(res.data.success) {
-          setPorfileUser(res.data.user);
-        }
-        // Retrieve user's posts
-        return PostAPI.getForUser(userId);
-      })
-      .then(res => {
-        if(res.data.success) {
-          setPorfilePosts(res.data.posts);
-        }
-      })
-      .catch(err => console.log(err));
-    }
-  }, [userId, refresh]);
+  
 
   let handleEditPost = (postId: string) => {
     navigate(`/posts/edit/${postId}`);
@@ -58,7 +47,8 @@ const UserProfile = () => {
     PostAPI.deletePost(postId)
     .then(res => {
       if(res.data.success) {
-        setRefresh(!refresh);
+        // fetcher.reload();
+        navigate(".", { replace: true });
       }
     })
     .catch(err => console.log(err));
@@ -80,23 +70,21 @@ const UserProfile = () => {
   }
 
   return (
-    <>
-      {profileUser && profilePosts && <div id="userProfile">
-        <h1>{profileUser.username}'s profile</h1>
+    <div id="userProfile">
+      <h1>{profileUser.username}'s profile</h1>
 
-        {auth.authUser && (profileUser._id === auth.authUser._id) && 
-          <Button variant="danger" onClick={handleDeleteUser}>Delete Account</Button>
-        }
+      {auth.authUser && (profileUser._id === auth.authUser._id) && 
+        <Button variant="danger" onClick={handleDeleteUser}>Delete Account</Button>
+      }
 
-        <div id="userProfile-list">
-          <PostsList 
-            posts={profilePosts} 
-            userId={authUser ? authUser._id : undefined}
-            editPost={handleEditPost}
-            deletePost={handleDeletePost}/>
-        </div>
-      </div>}
-    </>
+      <div id="userProfile-list">
+        <PostsList 
+          posts={profilePosts} 
+          userId={authUser ? authUser._id : undefined}
+          editPost={handleEditPost}
+          deletePost={handleDeletePost}/>
+      </div>
+    </div>
   );
 };
 
