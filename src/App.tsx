@@ -1,6 +1,6 @@
 import './App.css';
 // Routing
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, LoaderFunctionArgs } from "react-router-dom";
 // Pages
 import Homepage from "./pages/home/Homepage";
 import Login from "./pages/auth/Login";
@@ -20,16 +20,18 @@ import PostAPI from "./apis/PostAPI";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Loader for UserProfile page
-const userProfileLoader = async ({ params }) => {
-  const [res1, res2] = await Promise.all([
-    UserAPI.getUser(params.userId),
-    PostAPI.getForUser(params.userId)
-  ]);
-
-  return {
-    profileUser: res1.data.user,
-    profilePosts: res2.data.posts
-  };
+const userProfileLoader = async ({ params }: LoaderFunctionArgs) => {
+  if(typeof params.userId === "string") {
+    const [res1, res2] = await Promise.all([
+      UserAPI.getUser(params.userId),
+      PostAPI.getForUser(params.userId)
+    ]);
+  
+    return {
+      profileUser: res1.data.user,
+      profilePosts: res2.data.posts
+    };
+  }
 };
 
 // Create data router singleton
@@ -83,8 +85,10 @@ const router = createBrowserRouter([
                   path: ":postId",
                   element: <EditPost/>,
                   loader: async ({ params }) => {
-                    const res = await PostAPI.getPost(params.postId);
-                    return res.data.post;
+                    if(typeof params.postId === "string") {
+                      const res = await PostAPI.getPost(params.postId);
+                      return res.data.post;
+                    }
                   }
                 }
               ]

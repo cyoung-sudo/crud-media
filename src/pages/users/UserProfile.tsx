@@ -48,7 +48,7 @@ const UserProfile = () => {
   const location = useLocation();
 
   useEffect(() => {
-    let pagePosts = currentData();
+    let pagePosts = currentData() as Post[];
     setPageData(pagePosts);
   }, [currentPage, location])
 

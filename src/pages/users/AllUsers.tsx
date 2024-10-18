@@ -28,7 +28,7 @@ const AllUsers = () => {
   const { currentPage, totalPages, currentData, nextPage, prevPage } = usePagination(users, 10);
 
   useEffect(() => {
-    let pageUsers = currentData();
+    let pageUsers = currentData() as User[];
     setPageData(pageUsers);
   }, [currentPage])
 

@@ -33,7 +33,7 @@ const AllPosts = () => {
   const { currentPage, totalPages, currentData, nextPage, prevPage } = usePagination(posts, 10);
 
   useEffect(() => {
-    let pagePosts = currentData();
+    let pagePosts = currentData() as Post[];
     setPageData(pagePosts);
   }, [currentPage])
 
