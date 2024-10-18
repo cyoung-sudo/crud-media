@@ -6,4 +6,4 @@ export const api = axios.create({
   headers: { "Custom-Language": "en" }
 });
 
-export const baseURL = "https://crud-media-server.onrender.com";
+export const baseURL = "inland-minda-projects2024-c2f044cb.koyeb.app";
