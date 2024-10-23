@@ -1,3 +1,18 @@
 #layout-content {
   min-height: calc(100vh - var(--navbar-height));
 }
+
+#layout-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#layout-loading > p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+}
