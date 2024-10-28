@@ -6,5 +6,4 @@ export const api = axios.create({
   headers: { "Custom-Language": "en" }
 });
 
-// export const baseURL = "https://crud-media-server.onrender.com";
-export const baseURL = "http://localhost:5050";
+export const baseURL = "https://crud-media-server.onrender.com";
