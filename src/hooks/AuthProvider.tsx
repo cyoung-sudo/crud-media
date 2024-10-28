@@ -4,6 +4,8 @@ import { useEffect, useContext, createContext, useState, ReactNode } from "react
 import { useNavigate } from "react-router-dom";
 // APIs
 import AuthAPI from "../apis/AuthAPI.ts";
+// Hooks
+import { usePopup } from "./PopupProvider.tsx";
 // Types
 import { User } from "../types/index.ds.ts";
 
@@ -22,6 +24,7 @@ const AuthContext = createContext<AuthContextType>({
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
   // Hooks
+  const popup = usePopup();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,8 +32,6 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       .then(res => {
         if(res.data.success) {
           setAuthUser(res.data.user);
-        } else {
-          console.log(res.data.message);
         }
       })
       .catch(err => console.log(err));
@@ -42,8 +43,9 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if(res.data.success) {
         setAuthUser(res.data.user);
         navigate("/");
+        popup.openPopup("User logged-in");
       } else {
-        console.log(res.data.message);
+        popup.openPopup(res.data.message);
       }
     } catch(err) {
       console.log(err);
@@ -56,6 +58,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if(res.data.success) {
         setAuthUser(null);
         navigate("/");
+        popup.openPopup("User logged-out");
       }
     } catch(err) {
       console.log(err);

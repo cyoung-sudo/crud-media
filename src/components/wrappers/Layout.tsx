@@ -7,7 +7,9 @@ import { Outlet } from "react-router-dom";
 import Navigationbar from "../navigation/Navigationbar";
 import Footer from "../navigation/Footer";
 import ScrollToTop from "../utils/ScrollToTop";
+import Popup from "../popup/Popup";
 // Context
+import PopupProvider from "../../hooks/PopupProvider";
 import AuthProvider from "../../hooks/AuthProvider";
 // API
 import OtherAPI from "../../apis/OtherAPI";
@@ -30,14 +32,17 @@ const Layout = () => {
   return (
     <>
       {!serverLoading &&
-        <AuthProvider>
-          <Navigationbar/>
-          <div id="layout-content">
-            <ScrollToTop/>
-            <Outlet/>
-          </div>
-          <Footer/>
-        </AuthProvider>
+        <PopupProvider>
+          <AuthProvider>
+            <Navigationbar/>
+            <Popup/>
+            <div id="layout-content">
+              <ScrollToTop/>
+              <Outlet/>
+            </div>
+            <Footer/>
+          </AuthProvider>
+        </PopupProvider>
       }
 
       {serverLoading && 

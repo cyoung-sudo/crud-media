@@ -9,6 +9,7 @@ import PostForm from "../../components/forms/PostForm";
 import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
+import { usePopup } from "../../hooks/PopupProvider";
 
 const NewPost = () => {
   // Controlled inputs
@@ -18,6 +19,7 @@ const NewPost = () => {
   const navigate = useNavigate();
   const auth = useAuth();
   const authUser = auth.authUser;
+  const popup = usePopup();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,10 +27,8 @@ const NewPost = () => {
       PostAPI.create(title, text)
       .then(res => {
         if(res.data.success) {
-          console.log("Post created");
           navigate("/posts");
-        } else {
-          console.log(res.data.message);
+          popup.openPopup("Post Created");
         }
       })
       .catch(err => console.log(err));

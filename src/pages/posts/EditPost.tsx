@@ -9,6 +9,7 @@ import PostForm from "../../components/forms/PostForm";
 import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
+import { usePopup } from "../../hooks/PopupProvider";
 // Types
 import { Post } from "../../types/index.ds";
 
@@ -21,6 +22,7 @@ const EditPost = () => {
   // Hooks
   const navigate = useNavigate();
   const auth = useAuth();
+  const popup = usePopup();
 
   // Prefill inputs
   useEffect(() => {
@@ -33,7 +35,7 @@ const EditPost = () => {
     PostAPI.editPost(post._id, title, text)
     .then(res => {
       if(res.data.success) {
-        console.log("Post edited")
+        popup.openPopup("Post Updated");
         if(auth.authUser) {
           navigate(`/users/${auth.authUser._id}`);
         } else {

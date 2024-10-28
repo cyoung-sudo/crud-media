@@ -11,6 +11,7 @@ import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
 import usePagination from "../../hooks/usePagination";
+import { usePopup } from "../../hooks/PopupProvider";
 // Types
 import { User } from "../../types/index.ds";
 import { Post } from "../../types/index.ds";
@@ -34,6 +35,7 @@ const UserProfile = () => {
   const auth = useAuth();
   const authUser = auth.authUser;
   const { currentPage, totalPages, currentData, nextPage, prevPage } = usePagination(profilePosts, 10);
+  const popup = usePopup();
   const location = useLocation();
 
   useEffect(() => {
@@ -50,6 +52,7 @@ const UserProfile = () => {
     .then(res => {
       if(res.data.success) {
         navigate(".", { replace: true });
+        popup.openPopup("Deleted Post");
       }
     })
     .catch(err => console.log(err));
@@ -63,7 +66,7 @@ const UserProfile = () => {
       UserAPI.deleteUser(authUser._id)
       .then(res => {
         if(res.data.success) {
-          console.log("Deleted Account")
+          popup.openPopup("Deleted User");
         }
       })
       .catch(err => console.log(err));

@@ -4,20 +4,22 @@ import { useState, useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
+import { usePopup } from "../../hooks/PopupProvider";
 
 const PrivateRoute = () => {
   // Auth status
   const [authenticated, setAuthenticated] = useState(false);
   // Hooks
   const auth = useAuth();
+  const popup = usePopup();
   const navigate = useNavigate();
 
   useEffect(() => {
     if(auth.authUser) {
       setAuthenticated(true);
     } else {
-      console.log("Invalid Authentication");
       navigate("/");
+      popup.openPopup("Invalid Authentication");
     }
   }, [])
 
