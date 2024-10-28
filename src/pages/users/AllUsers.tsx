@@ -7,17 +7,12 @@ import { useLoaderData } from "react-router-dom";
 import UsersList from "../../components/lists/UsersList";
 // Hook
 import usePagination from "../../hooks/usePagination";
+// Types
+import { User } from "../../types/index.ds";
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 // Icons
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-
-interface User {
-  _id: string;
-  username: string;
-  password: string;
-  createdAt: Date;
-}
 
 const AllUsers = () => {
   // Loader data

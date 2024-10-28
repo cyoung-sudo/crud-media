@@ -8,19 +8,12 @@ import PostsLists from "../../components/lists/PostsList";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
 import usePagination from "../../hooks/usePagination";
+// Types
+import { Post } from "../../types/index.ds";
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 // Icons
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-
-interface Post {
-  _id: string,
-  userId: string,
-  username: string,
-  title: string,
-  text: string,
-  createdAt: Date
-};
 
 const AllPosts = () => {
   // Loader data

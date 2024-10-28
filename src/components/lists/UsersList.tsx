@@ -1,21 +1,16 @@
 import "./UsersList.css";
 // Routing
 import { useNavigate } from "react-router-dom";
+// Types
+import { User } from "../../types/index.ds";
 // Bootstrap
 import ListGroup from 'react-bootstrap/ListGroup';
 
-interface User {
-  _id: string,
-  username: string;
-  password: string;
-  createdAt: Date;
-}
-
-interface Props {
+interface UsersListProps {
   users: User[];
 };
 
-const UsersList: React.FC<Props> = ({ users }) => {
+const UsersList: React.FC<UsersListProps> = ({ users }) => {
   // Hooks
   const navigate = useNavigate();
 

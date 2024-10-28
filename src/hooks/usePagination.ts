@@ -1,20 +1,7 @@
 import { useState, useEffect } from 'react';
-
-interface User {
-  _id: string;
-  username: string;
-  password: string;
-  createdAt: Date;
-};
-
-interface Post {
-  _id: string,
-  userId: string,
-  username: string,
-  title: string,
-  text: string,
-  createdAt: Date
-};
+// Types
+import { User } from '../types/index.ds';
+import { Post } from '../types/index.ds';
 
 const usePagination = (data: User[] | Post[], itemsPerPage: number) => {
   const [currentPage, setCurrentPage] = useState(1);

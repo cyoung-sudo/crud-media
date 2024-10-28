@@ -9,12 +9,8 @@ import PostForm from "../../components/forms/PostForm";
 import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
-
-interface Post {
-  _id: string,
-  title: string;
-  text: string;
-}
+// Types
+import { Post } from "../../types/index.ds";
 
 const EditPost = () => {
   // Loader data

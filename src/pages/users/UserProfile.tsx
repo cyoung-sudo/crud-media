@@ -11,24 +11,13 @@ import PostAPI from "../../apis/PostAPI";
 // Hooks
 import { useAuth } from "../../hooks/AuthProvider";
 import usePagination from "../../hooks/usePagination";
+// Types
+import { User } from "../../types/index.ds";
+import { Post } from "../../types/index.ds";
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 // Icons
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-
-interface User {
-  _id: string;
-  username: string;
-};
-
-interface Post {
-  _id: string,
-  userId: string,
-  username: string,
-  title: string,
-  text: string,
-  createdAt: Date
-};
 
 interface LoaderData {
   profileUser: User;

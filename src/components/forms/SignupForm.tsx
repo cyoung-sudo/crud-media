@@ -3,7 +3,7 @@ import "./SignupForm.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-interface Props {
+interface SignupFormProps {
   username: string;
   password: string;
   setUsername: (username: string) => void;
@@ -11,7 +11,7 @@ interface Props {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const Signup: React.FC<Props> = ({ username, password, setUsername, setPassword, handleSubmit }) => {
+const SignupForm: React.FC<SignupFormProps> = ({ username, password, setUsername, setPassword, handleSubmit }) => {
   return (
     <Form id = "signup-form" onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
@@ -39,4 +39,4 @@ const Signup: React.FC<Props> = ({ username, password, setUsername, setPassword,
   )
 };
 
-export default Signup;
+export default SignupForm;

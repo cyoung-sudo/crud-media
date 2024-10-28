@@ -4,12 +4,8 @@ import { useEffect, useContext, createContext, useState, ReactNode } from "react
 import { useNavigate } from "react-router-dom";
 // APIs
 import AuthAPI from "../apis/AuthAPI.ts";
-
-interface User {
-  _id: string,
-  username: string,
-  password: string
-};
+// Types
+import { User } from "../types/index.ds.ts";
 
 interface AuthContextType {
   authUser: User | null;

@@ -3,7 +3,7 @@ import "./LoginForm.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-interface Props {
+interface LoginProps {
   username: string;
   password: string;
   setUsername: (username: string) => void;
@@ -11,7 +11,7 @@ interface Props {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const Login: React.FC<Props> = ({ username, password, setUsername, setPassword, handleSubmit }) => {
+const LoginForm: React.FC<LoginProps> = ({ username, password, setUsername, setPassword, handleSubmit }) => {
   return (
     <Form id = "login-form" onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
@@ -39,4 +39,4 @@ const Login: React.FC<Props> = ({ username, password, setUsername, setPassword, 
   )
 };
 
-export default Login;
+export default LoginForm;

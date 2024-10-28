@@ -1,26 +1,19 @@
 import "./PostsList.css";
 import { useNavigate } from "react-router-dom";
+// Types
+import { Post } from "../../types/index.ds";
 // Bootstrap
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
-interface Post {
-  _id: string,
-  userId: string,
-  username: string,
-  title: string;
-  text: string;
-  createdAt: Date;
-}
-
-interface Props {
+interface PostsListProps {
   posts: Post[];
   userId?: string;
   editPost?: (id: string) => void;
   deletePost?: (id: string) => void;
 };
 
-const PostsList: React.FC<Props> = ({ posts, userId=null, editPost=null, deletePost=null }) => {
+const PostsList: React.FC<PostsListProps> = ({ posts, userId=null, editPost=null, deletePost=null }) => {
   // Hooks
   const navigate = useNavigate();
 

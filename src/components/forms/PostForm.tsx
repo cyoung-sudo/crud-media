@@ -3,7 +3,7 @@ import "./PostForm.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-interface Props {
+interface PostFormProps {
   title: string;
   text: string;
   setTitle: (title: string) => void;
@@ -11,7 +11,7 @@ interface Props {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const PostForm: React.FC<Props> = ({ title, text, setTitle, setText, handleSubmit }) => {
+const PostForm: React.FC<PostFormProps> = ({ title, text, setTitle, setText, handleSubmit }) => {
   return (
     <Form id = "login-form" onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
