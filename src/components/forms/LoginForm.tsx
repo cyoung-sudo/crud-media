@@ -15,8 +15,9 @@ const LoginForm: React.FC<LoginProps> = ({ username, password, setUsername, setP
   return (
     <Form id = "login-form" onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
-        <Form.Label>Username</Form.Label>
+        <Form.Label htmlFor="login-username">Username</Form.Label>
         <Form.Control 
+          id="login-username"
           onChange={e => setUsername(e.target.value)}
           value={username}
           type="text"
@@ -24,8 +25,9 @@ const LoginForm: React.FC<LoginProps> = ({ username, password, setUsername, setP
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Password</Form.Label>
+        <Form.Label htmlFor="login-password">Password</Form.Label>
         <Form.Control 
+          id="login-password"
           onChange={e => setPassword(e.target.value)}
           value={password}
           type="password" 

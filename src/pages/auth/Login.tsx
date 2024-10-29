@@ -13,7 +13,7 @@ const Login = () => {
   // Hooks
   const auth = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     auth.login(username, password);
   }
