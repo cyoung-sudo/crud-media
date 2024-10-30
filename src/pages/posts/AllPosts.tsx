@@ -42,9 +42,13 @@ const AllPosts = () => {
       }
 
       <div id="allPosts-pagination">
-        <Button onClick={prevPage} variant="primary"><FaArrowLeftLong/></Button>
+        <Button onClick={prevPage} variant="primary" data-testid="allPosts-prevPage">
+          <FaArrowLeftLong/>
+        </Button>
         <span>{currentPage}/{totalPages}</span>
-        <Button onClick={nextPage} variant="primary"><FaArrowRightLong/></Button>
+        <Button onClick={nextPage} variant="primary" data-testid="allPosts-nextPage">
+          <FaArrowRightLong/>
+        </Button>
       </div>
     </div>
   );

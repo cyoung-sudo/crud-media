@@ -15,7 +15,7 @@ describe('Login', () => {
     vi.clearAllMocks();
   });
 
-  it('calls the login-api request w/ the correct arguments', async () => {
+  it('correctly passes form data to server', async () => {
     vi.mock('../../apis/AuthAPI.ts', () => ({
       default: {
         getAuthUser: vi.fn().mockResolvedValue({data: {success: true}}),
@@ -41,10 +41,12 @@ describe('Login', () => {
     const passwordInput = screen.getByLabelText("Password");
     const submitButton = screen.getByText("Submit");
 
+    // Fill in & submit form
     await userEvent.type(usernameInput, "Bob");
     await userEvent.type(passwordInput, "pass123");
     await userEvent.click(submitButton);
 
+    // Assertions
     expect(AuthAPI.login).toHaveBeenCalledWith("Bob", "pass123");
   });
 });
