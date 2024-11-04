@@ -25,7 +25,7 @@ const Navigationbar = () => {
             <Nav.Link>Posts</Nav.Link>
           </LinkContainer>
           {!auth.authUser &&
-            <LinkContainer to="/auth/signup">
+            <LinkContainer to="/auth/signup" data-testid="nav-signup">
               <Nav.Link>Signup</Nav.Link>
             </LinkContainer>
           }
@@ -35,7 +35,7 @@ const Navigationbar = () => {
             </LinkContainer>
           }
           {auth.authUser && 
-            <LinkContainer to={`/users/${auth.authUser._id}`}>
+            <LinkContainer to={`/users/${auth.authUser._id}`} data-testid="nav-profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
           }

@@ -20,7 +20,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ username, password, setUsername
           onChange={e => setUsername(e.target.value)}
           value={username}
           type="text"
-          placeholder="Enter username" />
+          placeholder="Enter username"
+          data-testid="signup-username" />
       </Form.Group>
 
       <Form.Group className="mb-3">
@@ -29,10 +30,14 @@ const SignupForm: React.FC<SignupFormProps> = ({ username, password, setUsername
           onChange={e => setPassword(e.target.value)}
           value={password}
           type="password" 
-          placeholder="Password" />
+          placeholder="Password"
+          data-testid="signup-password" />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button 
+        variant="primary" 
+        type="submit"
+        data-testid="signup-submit">
         Submit
       </Button>
     </Form>

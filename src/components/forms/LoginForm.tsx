@@ -21,7 +21,8 @@ const LoginForm: React.FC<LoginProps> = ({ username, password, setUsername, setP
           onChange={e => setUsername(e.target.value)}
           value={username}
           type="text"
-          placeholder="Enter username" />
+          placeholder="Enter username"
+          data-testid="login-username" />
       </Form.Group>
 
       <Form.Group className="mb-3">
@@ -31,10 +32,14 @@ const LoginForm: React.FC<LoginProps> = ({ username, password, setUsername, setP
           onChange={e => setPassword(e.target.value)}
           value={password}
           type="password" 
-          placeholder="Password" />
+          placeholder="Password"
+          data-testid="login-password" />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button 
+        variant="primary" 
+        type="submit"
+        data-testid="login-submit">
         Submit
       </Button>
     </Form>

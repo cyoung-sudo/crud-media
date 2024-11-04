@@ -75,7 +75,7 @@ const UserProfile = () => {
 
   return (
     <div id="userProfile">
-      <h1>{profileUser.username}'s profile</h1>
+      <h1 data-testid="profile-username">{profileUser.username}'s profile</h1>
 
       {auth.authUser && (profileUser._id === auth.authUser._id) && 
         <Button variant="danger" onClick={handleDeleteUser}>Delete Account</Button>
